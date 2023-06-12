@@ -5,6 +5,7 @@
     <th>#</th>
     <th>User</th>
     <th>Description</th>
+    <th>Completed</th>
     <th></th>
     {% for todo in todos %}
     <tr>
@@ -14,6 +15,14 @@
         <a href="{{ app.request.baseurl }}/todo/{{ todo.id }}">
           {{ todo.description }}
         </a>
+      </td>
+      <td>
+        <input
+          type="checkbox"
+          id="{{ todo.id }}"
+          value="{{ todo.description }}"
+          onclick="save_checkbox(this.id, this.value)"
+        />
       </td>
       <td>
         <form
