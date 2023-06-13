@@ -47,6 +47,20 @@
 
     document.getElementById('json').innerHTML = JSON.stringify(data, null, 4)
   </script>
+
+  <p>Next/Previous Tasks:</p>
+  <div class="pagination">
+    {% if "{{ app.request.baseurl }}/todo/{{ todo.id (-1)}}" == '' %}
+    <a hidden href="#"></a>
+    {% else %}
+    <a href="{{ app.request.baseurl }}/todo/{{ todo.id -1}}">❮</a>
+    {% endif %} {% if "{{ app.request.baseurl }}/todo/{{ todo.id (+1)}}" == ''
+    %}
+    <a hidden href="#"></a>
+    {% else %}
+    <a href="{{ app.request.baseurl }}/todo/{{ todo.id +1}}">❯</a>
+    {% endif %}
+  </div>
 </div>
 
 {% endblock %}
