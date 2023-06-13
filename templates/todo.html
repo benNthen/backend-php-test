@@ -5,12 +5,20 @@
     <th>#</th>
     <th>User</th>
     <th>Description</th>
+    <th>Completed</th>
     <th></th>
     <tr>
-      <td>{{ todo.id }}</td>
-      <td>{{ todo.user_id }}</td>
-      <td>{{ todo.description }}</td>
-      <td>{{ todo.is_complete }}</td>
+      <td id="id">{{ todo.id }}</td>
+      <td id="user">{{ todo.user_id }}</td>
+      <td id="description">{{ todo.description }}</td>
+      <td>
+        <input
+          type="checkbox"
+          id="{{ todo.id }}"
+          value="{{ todo.description }}"
+          onclick="save_checkbox(this.id, this.value)"
+        />
+      </td>
       <td>
         <form
           method="post"
@@ -23,6 +31,22 @@
       </td>
     </tr>
   </table>
+  <p>In JSON Format:</p>
+  <pre id="json"></pre>
+  <script>
+    var tdid = document.getElementById('id')
+    var idText = tdid.innerHTML
+
+    var tduser = document.getElementById('user')
+    var userText = tduser.innerHTML
+
+    var tddes = document.getElementById('description')
+    var desText = tddes.innerHTML
+
+    var data = { id: idText, user_id: userText, description: desText }
+
+    document.getElementById('json').innerHTML = JSON.stringify(data, null, 4)
+  </script>
 </div>
 
 {% endblock %}
