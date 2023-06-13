@@ -1,13 +1,13 @@
 <?php
-if(isset($_POST['id']) && isset($_POST['description'])){
+// if(isset($_POST['id']) && isset($_POST['description'])){
   
-  $id = $_POST['id'];
-  $des = $_POST['description'];
+//   $id = $_POST['id'];
+//   $des = $_POST['description'];
 
-  echo 'Sucess!';
+//   echo 'Sucess!';
 
-} else {
-  echo 'No data received.';
-}
+// } else {
+//   echo 'No data received.';
+// }
 
 ?>

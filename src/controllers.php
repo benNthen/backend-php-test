@@ -2,6 +2,7 @@
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
     $twig->addGlobal('user', $app['session']->get('user'));
@@ -76,6 +77,11 @@ $app->post('/todo/add', function (Request $request) use ($app) {
     $sql = "INSERT INTO todos (user_id, description) VALUES ('$user_id', '$description')";
     $app['db']->executeUpdate($sql);
 
+    // Creates message alert for new task added
+    $session = new Session();
+
+    $session->getFlashBag()->set('added', 'New Task Created. Added successfully to the list.');
+
     return $app->redirect('/todo');
 });
 
@@ -84,6 +90,11 @@ $app->match('/todo/delete/{id}', function ($id) use ($app) {
 
     $sql = "DELETE FROM todos WHERE id = '$id'";
     $app['db']->executeUpdate($sql);
+
+    // Creates message alert for removed task
+    $session = new Session();
+
+    $session->getFlashBag()->set('deleted', 'Task removed.');
 
     return $app->redirect('/todo');
 });

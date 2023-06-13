@@ -3,5 +3,22 @@ body {
 }
 
 .login-form > div {
-    margin-top: 10px;
+  margin-top: 10px;
+}
+
+/* Confirmation for Added Task */
+.alert-success {
+  background-image: linear-gradient(
+    var(--color-success-subtle),
+    var(--color-success-subtle)
+  );
+  border-color: var(--color-success-muted);
+  color: var(--color-fg-default);
+}
+
+/* Confirmation for Removed Task */
+.alert-deleted {
+  background-color: #ffdddd !important;
+  border-color: var(--color-danger-muted);
+  color: var(--color-fg-default);
 }
