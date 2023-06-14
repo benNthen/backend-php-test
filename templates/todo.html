@@ -31,36 +31,9 @@
       </td>
     </tr>
   </table>
-  <p>In JSON Format:</p>
-  <pre id="json"></pre>
-  <script>
-    var tdid = document.getElementById('id')
-    var idText = tdid.innerHTML
-
-    var tduser = document.getElementById('user')
-    var userText = tduser.innerHTML
-
-    var tddes = document.getElementById('description')
-    var desText = tddes.innerHTML
-
-    var data = { id: idText, user_id: userText, description: desText }
-
-    document.getElementById('json').innerHTML = JSON.stringify(data, null, 4)
-  </script>
-
-  <p>Next/Previous Tasks:</p>
-  <div class="pagination">
-    {% if "{{ app.request.baseurl }}/todo/{{ todo.id (-1)}}" == '' %}
-    <a hidden href="#"></a>
-    {% else %}
-    <a href="{{ app.request.baseurl }}/todo/{{ todo.id -1}}">❮</a>
-    {% endif %} {% if "{{ app.request.baseurl }}/todo/{{ todo.id (+1)}}" == ''
-    %}
-    <a hidden href="#"></a>
-    {% else %}
-    <a href="{{ app.request.baseurl }}/todo/{{ todo.id +1}}">❯</a>
-    {% endif %}
-  </div>
+  <!-- <p>In JSON Format:</p>
+  <pre id="json"></pre> -->
+  <a href="/todo">Back To Home</a>
 </div>
 
 {% endblock %}

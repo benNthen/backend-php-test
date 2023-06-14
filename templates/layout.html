@@ -47,20 +47,43 @@
     <div class="container">
       <div class="row">{% block content %}{% endblock %}</div>
     </div>
-    <script
-      type="text/javascript"
-      src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"
-    ></script>
-
-    <script>
-      function save_checkbox(id, des) {
-        var $id = id
-        var $des = des
-        //alert($id + $des) // next step create a JSON out of this
-      }
-    </script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   </body>
+  <script
+    type="text/javascript"
+    src="http://ajax.googleapis.com/ajax/libs/jquery/1.2.6/jquery.min.js"
+  ></script>
+
+  <script>
+    function save_checkbox(id, des) {
+      var $id = id
+      var $des = des
+      //alert($id + $des) // next step create a JSON out of this
+    }
+  </script>
+  <script type="text/javascript">
+    var tdid = document.getElementById('id')
+    var idText = tdid.innerHTML
+
+    var tduser = document.getElementById('user')
+    var userText = tduser.innerHTML
+
+    var tddes = document.getElementById('description')
+    var desText = tddes.innerHTML
+
+    var data = { id: idText, user_id: userText, description: desText }
+
+    document.getElementById('json').innerHTML = JSON.stringify(data, null, 4)
+  </script>
+  <script>
+    $(document).ready(function () {
+      $('#hide').click(function () {
+        $('pre#json').hide()
+      })
+      $('#show').click(function () {
+        $('pre#json').show()
+      })
+    })
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </html>
