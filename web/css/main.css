@@ -24,33 +24,23 @@ body {
 }
 
 /* Pagination for To Do List */
-.pagination {
-  display: inline-block;
-}
 
+/* Pagination links */
 .pagination a {
   color: black;
   float: left;
   padding: 8px 16px;
   text-decoration: none;
   transition: background-color 0.3s;
-  border: 1px solid #ddd;
 }
 
-.pagination b {
-  color: black;
-  float: left;
-  padding: 8px 16px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.pagination b.active {
+/* Style the active/current link */
+.pagination a.active {
   background-color: dodgerblue;
   color: white;
 }
 
 /* Add a grey background color on mouse-over */
-.pagination b:hover:not(.active) {
+.pagination a:hover:not(.active) {
   background-color: #ddd;
 }

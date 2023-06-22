@@ -22,7 +22,7 @@ app.session.flashbag.get('added') %}
         </a>
       </td>
       <td id="des" hidden>{{ todo.description }}</td>
-      <td>
+      <td id="complete">
         <input
           type="checkbox"
           id="{{ todo.id }}"
@@ -31,7 +31,7 @@ app.session.flashbag.get('added') %}
         />
       </td>
       <td id="json"></td>
-      <td>
+      <td id="delete">
         <form
           method="post"
           action="{{ app.request.baseurl }}/todo/delete/{{ todo.id }}"
@@ -43,7 +43,7 @@ app.session.flashbag.get('added') %}
       </td>
     </tr>
     {% endfor %}
-    <tr>
+    <tr id="add">
       <form method="post" action="{{ app.request.baseurl }}/todo/add">
         <td colspan="3">
           <input
@@ -62,84 +62,19 @@ app.session.flashbag.get('added') %}
     </tr>
   </table>
   <p id="rows"></p>
-  <div class="pagination">
+  <a href="#">&laquo;</a>
+  <div id="pagination" class="pagination">
     <p>View Each Task On A Separate Page:</p>
-    {% for todo in todos %}
-    <a href="{{ app.request.baseurl }}/todo/{{ todo.id }}">{{ todo.id }}</a>
-    {% endfor %}
+    <a href="#">&laquo;</a>
+    <div id="page_number">
+      <a href="#">1</a>
+    </div>
+    <a href="#">&raquo;</a>
   </div>
 </div>
-<script>
-  var table = document.getElementById('listInfo')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="./../js/complete.js"></script>
+<script src="./../js/json.js"></script>
+<script src="./../js/pagination.js"></script>
 
-  var rowsPerPage = 6
-
-  var rowCount = table.rows.length
-  //console.log(rowCount)
-
-  var rows = document.querySelectorAll('tr')
-  var total_r = rows.length - 1 // get num of rows minus the Add
-
-  if (total_r > 6) {
-    // take the remaining rows, convert to JSON and store it in a new array
-    // create new table, add the remaining rows from new array there
-    // have this table hidden from view until the user presses page 2
-    // when user presses page 2, hide the current table
-    // generate more pages if array on current page gets bigger
-    // repeat as required
-  }
-
-  // console.log(total_r)
-</script>
-<script type="text/javascript">
-  var tdid = document.querySelectorAll('td#id') // array
-  var total_id = []
-
-  var tduser = document.querySelectorAll('td#user') // array
-  var total_user = []
-
-  var tddesc = document.querySelectorAll('td#des') // array
-  var total_desc = []
-
-  tdid.forEach((id) => {
-    total_id.push(id.innerHTML)
-  })
-
-  tduser.forEach((uid) => {
-    total_user.push(uid.innerHTML)
-  })
-
-  tddesc.forEach((desc) => {
-    total_desc.push(desc.innerHTML)
-  })
-
-  var datas = [
-    {
-      id: total_id[0],
-      user_id: total_user[0],
-      description: total_desc[0],
-    },
-  ]
-
-  for (var i = 1; i < total_id.length; i++) {
-    datas.push({
-      id: total_id[i],
-      user_id: total_user[i],
-      description: total_desc[i],
-    })
-  }
-
-  var json = document.querySelectorAll('td#json')
-
-  for (var i = 0; i < total_id.length; i++) {
-    json[i].textContent =
-      '{ id: ' +
-      datas[i].id +
-      ', user_id: ' +
-      datas[i].user_id +
-      ', description: ' +
-      datas[i].description +
-      ' }'
-  }
-</script>
 {% endblock %}
